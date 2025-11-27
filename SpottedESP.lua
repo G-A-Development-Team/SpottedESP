@@ -1,48 +1,11 @@
-function using(pkgn) file.Write( "\\using/json.lua", http.Get( "https://raw.githubusercontent.com/G-A-Development-Team/libs/main/json.lua" ) ) LoadScript("\\using/json.lua") local pkg = json.decode(http.Get("https://raw.githubusercontent.com/G-A-Development-Team/Using/main/using.json"))["pkgs"][ pkgn ] if pkg ~= nil then file.Write( "\\using/" .. pkgn .. ".lua", http.Get( pkg ) ) LoadScript("\\using/" .. pkgn .. ".lua") else print("[using] package doesn't exist. {" .. pkgn .. "}") end end
+Who We Were, and where we went.
+On Novemeber, 21st. Our team was purged due to unresolved matters involving the improvement of many factors including, LUA Script Circulation, Engagement rate, Usage factors, and overall more success for this thing called Aimware. After fighting countless times trying to improve a dead/broken/unbuilt release of V6 we wanted to give up. But we never did! In fact we wanted to help it even more! Our team consists of Beta Testers. This gave us access to a private server allowing us to create suggestions, submit bug reports / crash reports, and more. But in the end no one saw our future of trying to improve these factors I've listed previously. All of the Beta Team just thought about Rage this, Rage that, Rage everything, never once was it about improving lua, improving the overall playerbase of the cheat, or just trying to simply help people asking for help. In my eyes in order to become friends with one of these people you have to consistently say the n-word, your sentences always had to involve a certain race, etc.
 
-using "AdvancedEntitySystemReworkFFI" --By CarterPoe
-using "W2S"
-using "Box"
+We were banned for trying to help Aimware. And just like all the other previous beta testers we get banned for essentially uncovering the blanket of racism that this cheat is bounded by.
 
-local tap = gui.Reference("Visuals", "Enemy")
-local gbox1 = gui.Groupbox(tap, "SpottedESP", 383, 253, 350, 0);  -- gbox1
-local box_color = gui.ColorPicker(gbox1, "boxesp_color", "Box Color", 13, 255, 31, 255)
+Coming soon we are releasing something no one has ever seen. Leagues above Aimware in their own framework. Stay Tuned.
 
-callbacks.Register("Draw", "SpottedESP", function()
-   local localEnt = entities.GetLocalPlayer()
-   if not localEnt then return end
-   local localIndex = localEnt:GetIndex()
-   local localTeam = localEnt:GetTeamNumber()
+Next month would've marked 10 years on Aimware for me. It's quite unfortunate it had to end this way for no reason.
 
-   local controllers = entities.FindByClass("CCSPlayerController")
-   if #controllers == 0 then return end
-
-   for _, controller in pairs(controllers) do
-       -- Resolve pawn handle to pawn and check spotted state
-       local pawnHandle = controller:GetFieldInt("m_hPawn")
-       if pawnHandle and pawnHandle ~= 0 then
-           local pawn = entitiesV2.GetPlayerPawnFromHandle(pawnHandle)
-           if pawn then
-               local spottedTable = pawn:GetFieldTable("m_entitySpottedState")
-               local is_spotted = false
-               if type(spottedTable) == "table" then
-                   is_spotted = (spottedTable.m_bSpotted == true) or (spottedTable.m_bSpotted == 1)
-               end
-               if is_spotted then
-                   -- Convert handle -> entity index -> game entity for drawing
-                   local pawnIndex = bit.band(pawnHandle, 0x7FFF)
-                   local ent = entities.GetByIndex(pawnIndex)
-                   if ent and ent:IsPlayer() and ent:IsAlive() then
-                       local entTeam = ent:GetTeamNumber()
-                       if ent:GetIndex() ~= localIndex and entTeam ~= localTeam then
-                        local r1, g1, b1, a1 = box_color:GetValue()
-                           draw_box(ent, { r = r1, g = g1, b = b1, a = a1 })
-                       end
-                   end
-               end
-           end
-       end
-   end
-end)
-
-print( "SpottedESP - v1.0 - Made By: Carter Poe & Agentsix1 (11.16.2025)" )
+For all of our scripts. Join our discord. As well as all the updates on our new project!
+https://discord.gg/SmVg9AKqNs
